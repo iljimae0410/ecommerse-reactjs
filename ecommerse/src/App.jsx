@@ -1,8 +1,20 @@
-import './App.css'
+import './App.css';
+import MainLayout from '@components/Layout/Layout';
+import MyHeader from '@components/Header/Header';
+import MyFooter from '@components/Footer/Footer';
+import MyButton from '@components/Button/Button';
 
 function App() {
+    return <>
 
-  return <div>Ecommerse</div>
+    <MainLayout>
+        {/* <MyHeader/>
+        Content
+        <MyFooter/> */}
+        <MyButton/>
+    </MainLayout>
+
+    </>
 }
 
-export default App
+export default App;
