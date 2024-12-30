@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "gulp-sass": "^5.1.0",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sass-loader": "^13.3.3"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
