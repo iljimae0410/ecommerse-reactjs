@@ -1,20 +1,12 @@
-import './App.css';
-import MainLayout from '@components/Layout/Layout';
 import MyHeader from '@components/Header/Header';
-import MyFooter from '@components/Footer/Footer';
-import MyButton from '@components/Button/Button';
+import MainLayout from '@components/Layout/Layout';
 
 function App() {
-    return <>
-
-    <MainLayout>
-        {/* <MyHeader/>
-        Content
-        <MyFooter/> */}
-        <MyButton/>
-    </MainLayout>
-
-    </>
+    return (
+        <>
+            <MyHeader />
+        </>
+    );
 }
 
 export default App;

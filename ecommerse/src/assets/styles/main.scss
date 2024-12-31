@@ -1,4 +1,4 @@
-@use 'normalize.css';
+@forward './normalize';
 @forward './variable.module';
 @forward './mixin.module';
 @forward './global.module';
