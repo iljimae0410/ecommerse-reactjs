@@ -1,10 +1,12 @@
-import MyHeader from '@components/Header/Header';
-import MainLayout from '@components/Layout/Layout';
+import HomePage from "@components/HomePage/HomePage";
+import Info from "@components/Info/Info";
+
 
 function App() {
     return (
         <>
-            <MyHeader />
+            <HomePage/>
+            <Info/>
         </>
     );
 }

@@ -1,9 +1,21 @@
-@use '@styles/mixin.module';
+@use "@styles/mixin.module";
+@use "@styles/variable.module";
 
-.btn{
-    @include mixin.btn(30px, 30px, #fff, 0px)
+.btn {
+    background-color: variable.$primary_color;
+    color:  variable.$white_color;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 13px 45px;
+    transition: all .3s;
+    outline: none;
+    border: 1px solid variable.$primary_color;
+    &:hover{
+        background-color: transparent;
+        color:  variable.$primary_color;
+    }
 }
 
-.btn2{
-    @include mixin.btn(44px , 44px, #fff, 50%)
-}
+
