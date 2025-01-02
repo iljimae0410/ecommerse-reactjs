@@ -1,0 +1,71 @@
+@use "@styles/variable.module";
+@use "@styles/mixin.module";
+
+.boxImg {
+    height: 100%;
+    width: 300px;
+    position: relative;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 500ms;
+    }
+
+    .showImgWhenHover {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    &:hover .showImgWhenHover {
+        opacity: 1;
+    }
+
+    .showFncWhenHover {
+        position: absolute;
+        opacity: 0;
+        bottom: 20px;
+        right: 0px;
+        background-color: variable.$white_color;
+        transition:
+            opacity 300ms,
+            right 300ms;
+        @include mixin.flex_box_custom(center, center, 5px);
+        flex-direction: column;
+    }
+
+    &:hover .showFncWhenHover {
+        opacity: 1;
+        right: 20px;
+    }
+
+    .boxIcon {
+        width: 40px;
+        height: 40px;
+        @include mixin.flex_box_custom(center, center, 0px);
+        img {
+            width: 17px;
+            height: 17px;
+        }
+        &:hover {
+            background-color: rgb(222, 222, 222);
+        }
+    }
+}
+
+.title {
+    font-size: 16px;
+    color: variable.$four_color;
+    margin: 6px 0;
+}
+
+.priceCl {
+    font-size: 14px;
+    color: variable.$thr_color;
+    font-weight: 400;
+}
