@@ -1,0 +1,11 @@
+@use '@styles/variable.module';
+@use '@styles/mixin.module';
+
+.container{
+    @include mixin.flex_box_custom(space-between, center, 10px);
+}
+
+.containerItem{
+    @include mixin.flex_box_custom(center, center, 10px);
+    flex: 1;
+}

@@ -1,0 +1,11 @@
+@use '@styles/variable.module';
+@use '@styles/mixin.module';
+
+.box{
+    background-color: variable.$white_color;
+    padding: 10px;
+    .title{
+        font-size: 18px;
+        color: variable.$secondary_color;
+    }
+}

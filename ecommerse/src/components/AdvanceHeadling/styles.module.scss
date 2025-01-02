@@ -1,0 +1,30 @@
+@use '@styles/variable.module';
+@use '@styles/mixin.module';
+
+.container{
+    @include mixin.flex_box_custom(center, center, 0px);
+    margin: 65px 0 15px;
+    .headline{
+        height: 2px;
+        border-top: 1px solid #e1e1e1;
+        border-bottom: 1px solid #e1e1e1;
+        width: 100%;
+        margin-top: 10px
+    }
+    .containerMiddleBox{
+        @include mixin.flex_box_custom(center, center, 0px);
+        flex-direction: column;
+        padding: 0px 40px;
+        width: 60%;
+        .des{
+            font-size: 14px;
+            color: variable.$thr_color;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .title{
+            font-size: 24px;
+            color: variable.$primary_color;
+        }
+    }
+}
