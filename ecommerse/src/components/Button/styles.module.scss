@@ -1,21 +1,30 @@
-@use "@styles/mixin.module";
-@use "@styles/variable.module";
+@use '@styles/mixin.module';
+@use '@styles/variable.module';
 
 .btn {
-    background-color: variable.$primary_color;
-    color:  variable.$white_color;
-    border-radius: 3px;
+    @include mixin.btn(176px, 42px, 3px, variable.$primary_color);
     cursor: pointer;
     font-size: 14px;
     font-weight: 400;
-    padding: 13px 45px;
-    transition: all .3s;
-    outline: none;
-    border: 1px solid variable.$primary_color;
     &:hover{
-        background-color: transparent;
-        color:  variable.$primary_color;
+        transition: background-color 300ms;
     }
 }
 
+.primaryBtn {
+    background-color: variable.$primary_color;
+    color: variable.$white_color;
+    &:hover {
+        background-color: transparent;
+        border: 1px solid variable.$primary_color;
+    }
+}
 
+.secondaryBtn {
+    background-color: transparent;
+    border: 1px solid variable.$primary_color;
+    &:hover {
+        background-color: variable.$primary_color;
+        color: variable.$white_color;
+    }
+}
