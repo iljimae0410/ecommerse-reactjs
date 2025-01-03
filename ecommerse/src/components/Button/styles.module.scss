@@ -17,6 +17,7 @@
     &:hover {
         background-color: transparent;
         border: 1px solid variable.$primary_color;
+        color: variable.$primary_color;
     }
 }
 
