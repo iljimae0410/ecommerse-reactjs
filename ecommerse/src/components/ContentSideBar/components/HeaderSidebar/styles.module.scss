@@ -1,0 +1,7 @@
+@use "@styles/mixin.module";
+@use "@styles/variable.module";
+
+.container {
+    @include mixin.flex_box_custom(center, center, 10px);
+    flex-direction: column;
+}

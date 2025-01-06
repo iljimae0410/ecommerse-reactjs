@@ -1,0 +1,14 @@
+@use "@styles/mixin.module";
+@use "@styles/variable.module";
+
+.container{
+    @include mixin.flex_box_custom(space-between, unset, 0px);
+    padding: 30px 20px 0 20px;
+    flex-direction: column;
+    height: 95%;
+
+    .boxBtn{
+        @include mixin.flex_box_custom(center, center, 10px);
+        flex-direction: column;
+    }
+}

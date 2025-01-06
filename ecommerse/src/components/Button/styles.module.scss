@@ -2,10 +2,10 @@
 @use '@styles/variable.module';
 
 .btn {
-    @include mixin.btn(176px, 42px, 3px, variable.$primary_color);
+    @include mixin.btn(100%, 42px, 3px, variable.$primary_color);
     cursor: pointer;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 300;
     &:hover{
         transition: background-color 300ms;
     }
