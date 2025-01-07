@@ -12,7 +12,9 @@ export default defineConfig({
       '@styles': path.resolve(__dirname, 'src/assets/styles'),
       '@icons': path.resolve(__dirname, 'src/assets/icons'),
       '@hooks': path.resolve(__dirname, 'src/hooks'),
-      '@contexts': path.resolve(__dirname, 'src/contexts')
+      '@contexts': path.resolve(__dirname, 'src/contexts'),
+      '@apis': path.resolve(__dirname, 'src/apis'),
+      '@pages': path.resolve(__dirname, 'src/pages')
     }
   }
 })

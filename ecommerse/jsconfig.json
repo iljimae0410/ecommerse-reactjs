@@ -1,13 +1,15 @@
 //Config auto import alias Vscode
 
 {
-    "compilerOptions":{
+    "compilerOptions": {
         "baseUrl": "./",
         "paths": {
             "@components/*": ["src/components/*"],
             "@assets/*": ["src/assets/*"],
             "@hooks/*": ["src/hooks/*"],
-            "@contexts/*": ["src/contexts/*"]
+            "@contexts/*": ["src/contexts/*"],
+            "@apis/*": ["src/apis/*"],
+            "@pages/*": ["src/pages/*"]
         }
     },
     "include": ["src/**/*"]
