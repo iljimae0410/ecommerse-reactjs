@@ -1,5 +1,5 @@
-@use "@styles/mixin.module.scss";
-@use "@styles/variable.module.scss";
+@use '@styles/mixin.module.scss';
+@use '@styles/variable.module.scss';
 
 .container {
     padding-top: 83px;
@@ -23,7 +23,7 @@
 
 .containerBanner {
     @include mixin.flex_box_custom(center, center, 0px);
-    background-image: url("https://xstore.8theme.com/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/Background.jpeg");
+    background-image: url('https://xstore.8theme.com/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/Background.jpeg');
     height: 279px;
     width: 100%;
     background-repeat: no-repeat;
@@ -45,4 +45,35 @@
         font-size: 28px;
         color: variable.$four_color;
     }
+}
+
+.containerFilter {
+    @include mixin.flex_box_custom(space-between, center, 0px);
+    margin-top: 15px;
+
+    .boxLeft {
+        @include mixin.flex_box_custom(space-between, center, 20px);
+    }
+
+    .boxRight{
+        @include mixin.flex_box_custom(space-between, center, 20px);
+    }
+
+    .boxIcon {
+        @include mixin.flex_box_custom(center, center, 10px);
+    }
+
+    .selectBox{
+        border: 1px solid #e1e1e1;
+        padding: 5px;
+        color: variable.$secondary_color;
+        &.sort{
+            width: 275px;
+        }
+
+        &.show{
+            width: 83px;
+        }
+    }
+    
 }
