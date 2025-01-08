@@ -6,6 +6,7 @@ import Banner from '@pages/OurShop/components/Banner';
 import { OurShopProvider } from '@contexts/OurShopProvider';
 import { useContext } from 'react';
 import Filter from '@pages/OurShop/components/Filter';
+import ListProducts from '@pages/OurShop/components/ListProducts';
 
 function OurShop() {
     const { container, functionBox, specialText, btnBack } = styles;
@@ -35,7 +36,8 @@ function OurShop() {
                     <Banner />
 
                     <div>
-                        <Filter/>
+                        <Filter />
+                        <ListProducts />
                     </div>
                 </div>
             </MainLayout>

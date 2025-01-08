@@ -17,7 +17,21 @@ function Filter() {
         sort
     } = styles;
 
-    const {showOoption, sortOption} = useContext(OurShopContext);
+    const { showOption, sortOption, setSortId, setShowId, setIsShoGrid } =
+        useContext(OurShopContext);
+
+    const getValueSelect = (value, type) => {
+        if (type === 'sort') {
+            setSortId(value);
+        } else {
+            setShowId(value);
+        }
+    };
+
+    const handleGetShowGrid = type => {
+        setIsShoGrid(type === 'grid');
+    };
+
     return (
         <div className={containerFilter}>
             <div className={boxLeft}>
@@ -26,10 +40,15 @@ function Filter() {
                     <option value='2'>2</option>
                     <option value='3'>3</option>
                 </select> */}
-                <SelectBox/>
+                <SelectBox
+                    options={sortOption}
+                    getValue={getValueSelect}
+                    type='sort'
+                />
                 <div className={boxIcon}>
                     <TfiLayoutGrid4
                         style={{ fontSize: '23px', cursor: 'pointer' }}
+                        onClick={() => handleGetShowGrid('grid')}
                     />
                     <div
                         style={{
@@ -44,16 +63,17 @@ function Filter() {
                             color: '#222',
                             cursor: 'pointer'
                         }}
+                        onClick={() => handleGetShowGrid('list')}
                     />
                 </div>
             </div>
             <div className={boxRight}>
                 <div style={{ fontSize: '14px', color: '#555555' }}>Show</div>
-                <select className={cls(selectBox, show)}>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
-                    <option value='3'>3</option>
-                </select>
+                <SelectBox
+                    options={showOption}
+                    getValue={getValueSelect}
+                    type='show'
+                />
             </div>
         </div>
     );
