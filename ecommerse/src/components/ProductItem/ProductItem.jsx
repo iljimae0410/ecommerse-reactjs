@@ -4,7 +4,7 @@ import heartIcon from '@icons/svgs/hearticon.svg';
 import cartIcon from '@icons/svgs/carticon.svg';
 import cls from 'classnames';
 import Button from '@components/Button/Button';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { OurShopContext } from '@contexts/OurShopProvider';
 
 function ProductItem({
@@ -15,7 +15,11 @@ function ProductItem({
     details,
     isHomepage = true
 }) {
-    const { isShowGrid } = useContext(OurShopContext);
+    // const { isShowGrid } = useContext(OurShopContext);
+
+    const [sizeChoose, setSizeChoose] = useState('');
+    const ourShopStore = useContext(OurShopContext);
+    const [isShowGrid, setIsShowGrid] = useState(ourShopStore?.isShowGrid);
 
     const {
         boxImg,
@@ -31,14 +35,34 @@ function ProductItem({
         content,
         containerItem,
         leftBtn,
-        largeImg
+        largeImg,
+        isActiveSize,
+        btnClear
     } = styles;
+
+    const handleChooseSize = (size) => {
+        setSizeChoose(size);
+    };
+
+    const handleClearSize = (size) => {
+        setSizeChoose('');
+    };
+
+    useEffect(() => {
+        if (isHomepage) {
+            setIsShowGrid(true);
+        } else {
+            setIsShowGrid(ourShopStore?.isShowGrid);
+        }
+    }, [isHomepage, ourShopStore?.isShowGrid]);
 
     return (
         <div className={isShowGrid ? '' : containerItem}>
-            <div className={cls(boxImg, {
-                [largeImg]: !isShowGrid
-            })}>
+            <div
+                className={cls(boxImg, {
+                    [largeImg]: !isShowGrid
+                })}
+            >
                 <img src={src} alt='' />
                 <img src={prevSrc} alt='' className={showImgWhenHover} />
 
@@ -63,13 +87,26 @@ function ProductItem({
                     <div className={boxSize}>
                         {details.size.map((item, index) => {
                             return (
-                                <div className={size} key={index}>
+                                <div
+                                    className={cls(size, {
+                                        [isActiveSize]: sizeChoose === item.name
+                                    })}
+                                    key={index}
+                                    onClick={() => handleChooseSize(item.name)}
+                                >
                                     {item.name}
                                 </div>
                             );
                         })}
                     </div>
                 )}
+
+                {sizeChoose && (
+                    <div className={btnClear} onClick={() => handleClearSize()}>
+                        clear
+                    </div>
+                )}
+
                 <div
                     className={cls(title, {
                         [textCenter]: !isHomepage
@@ -99,9 +136,11 @@ function ProductItem({
                 </div>
 
                 {!isHomepage && (
-                    <div className={cls(boxBtn, {
-                        [leftBtn]: !isShowGrid
-                    })}>
+                    <div
+                        className={cls(boxBtn, {
+                            [leftBtn]: !isShowGrid
+                        })}
+                    >
                         <Button content={'ADD TO CART'} />
                     </div>
                 )}
