@@ -8,6 +8,9 @@ export const SidebarProvider = ({ children }) => {
     const [type, setType] = useState('');
 
     const value = { isOpen, setIsOpen, type, setType };
+
+    
+
     return (
         <SideBarContext.Provider value={value}>
             {children}

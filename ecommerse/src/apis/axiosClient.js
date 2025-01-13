@@ -10,7 +10,7 @@ const axiosClient = axios.create({
 });
 
 axiosClient.interceptors.request.use(
-    async config => {
+    async (config) => {
         const token = Cookies.get('token');
 
         if (token) {
@@ -19,16 +19,16 @@ axiosClient.interceptors.request.use(
 
         return config;
     },
-    err => {
+    (err) => {
         return Promise.reject(err);
     }
 );
 
 axiosClient.interceptors.response.use(
-    res => {
+    (res) => {
         return res;
     },
-    async err => {
+    async (err) => {
         const originalRequest = err.config;
 
         if (err.response.status === 401 && !originalRequest._retry) {

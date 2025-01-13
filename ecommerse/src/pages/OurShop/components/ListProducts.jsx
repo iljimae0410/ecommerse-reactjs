@@ -4,11 +4,20 @@ import { OurShopContext } from '@contexts/OurShopProvider';
 import { useContext } from 'react';
 import styles from '../styles.module.scss';
 import Button from '@components/Button/Button';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import LoadingTextCommon from '@components/LoadingTextCommon/LoadingTextCommon';
 
 function ListProducts() {
-    const { containerProduct, btnLoadMore, sectionListProduct } = styles;
-    const { products, isShowGrid, isLoading, handleLoadMore, total } =
-        useContext(OurShopContext);
+    const { containerProduct, btnLoadMore, sectionListProduct, rotate } =
+        styles;
+    const {
+        products,
+        isShowGrid,
+        isLoading,
+        handleLoadMore,
+        total,
+        isLoadMore
+    } = useContext(OurShopContext);
 
     return (
         <div className={sectionListProduct}>
@@ -33,7 +42,13 @@ function ListProducts() {
                         {products.length < total && (
                             <div className={btnLoadMore}>
                                 <Button
-                                    content={'LOAD MORE PRODUCT'}
+                                    content={
+                                        isLoadMore ? (
+                                            <LoadingTextCommon />
+                                        ) : (
+                                            'LOAD MORE PRODUCT'
+                                        )
+                                    }
                                     onClick={handleLoadMore}
                                 />
                             </div>
