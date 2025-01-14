@@ -13,9 +13,9 @@ export const StoreProvider = ({ children }) => {
         Cookies.remove('token');
         Cookies.remove('refreshToken');
         Cookies.remove('userId');
-        setUserInfo(null);
-        setIsShowSubMenu(false);
         window.location.reload();
+        setUserInfo(null);
+        setIsShowSubMenu(false);        
     };
 
     useEffect(() => {

@@ -72,6 +72,7 @@ function Login() {
                         Cookies.set('refreshToken', refreshToken);
                         Cookies.set('userId', id);
                         toast.success('Sign in successfully!');
+                        window.location.reload();
                         setIsOpen(false);
                     })
                     .catch(err => {

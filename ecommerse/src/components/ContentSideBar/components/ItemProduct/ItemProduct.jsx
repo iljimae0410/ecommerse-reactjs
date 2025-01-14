@@ -1,7 +1,14 @@
 import styles from './styles.module.scss';
 import { IoClose } from "react-icons/io5";
 
-function ItemProduct() {
+function ItemProduct({
+    src,
+    nameProduct,
+    priceProduct,
+    skuProduct,
+    sizeProduct,
+    quantity
+}) {
     const { container, boxContent, title, price, boxClose, size } = styles;
     return (
         <div className={container}>
@@ -15,10 +22,10 @@ function ItemProduct() {
                  }}/>
             </div>
             <div className={boxContent}>
-                <div className={title}>Title of Product</div>
-                <div className={size}>Size: M</div>
-                <div className={price}>$199.99</div>
-                <div className={price}>SKU: 12349</div>
+                <div className={title}>{nameProduct}</div>
+                <div className={size}>Size: {sizeProduct}</div>
+                <div className={price}>{quantity} x ${priceProduct}</div>
+                <div className={price}>SKU: {skuProduct}</div>
             </div>
         </div>
     );

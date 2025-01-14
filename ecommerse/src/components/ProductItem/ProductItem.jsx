@@ -26,7 +26,8 @@ function ProductItem({
     const ourShopStore = useContext(OurShopContext);
     const [isShowGrid, setIsShowGrid] = useState(ourShopStore?.isShowGrid);
     const userId = Cookies.get('userId');
-    const { setIsOpen, setType } = useContext(SideBarContext);
+    const { setIsOpen, setType, handleGetListProductCart } =
+        useContext(SideBarContext);
     const { toast } = useContext(ToastContext);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -87,6 +88,7 @@ function ProductItem({
                 setTimeout(() => {
                     setIsLoading(false);
                 }, 500);
+                handleGetListProductCart(userId, 'cart');
             })
             .catch((err) => {
                 toast.error('Add Product to cart failed!');

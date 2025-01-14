@@ -19,13 +19,15 @@ function MyHeader() {
         containerHeader,
         container,
         fixedHeader,
-        topHeader
+        topHeader,
+        boxCart,
+        quantity
     } = styles;
 
     const { scrollPosition } = useScrollHandling();
     const [fixedPosition, setFixedPosition] = useState(false);
 
-    const { setIsOpen, setType } = useContext(SideBarContext);
+    const { setIsOpen, setType, listProductCart } = useContext(SideBarContext);
 
     const handleOpenSideBar = (type) => {
         setIsOpen(true);
@@ -45,14 +47,14 @@ function MyHeader() {
             <div className={containerHeader}>
                 <div className={containerBox}>
                     <div className={containerBoxIcon}>
-                        {dataBoxIcon.map(item => {
+                        {dataBoxIcon.map((item) => {
                             return (
                                 <BoxIcon type={item.type} href={item.href} />
                             );
                         })}
                     </div>
                     <div className={containerMenu}>
-                        {dataMenu.slice(0, 3).map(item => {
+                        {dataMenu.slice(0, 3).map((item) => {
                             return (
                                 <Menu content={item.content} href={item.href} />
                             );
@@ -71,7 +73,7 @@ function MyHeader() {
                 </div>
                 <div className={containerBox}>
                     <div className={containerMenu}>
-                        {dataMenu.slice(3, dataMenu.length).map(item => {
+                        {dataMenu.slice(3, dataMenu.length).map((item) => {
                             return (
                                 <Menu content={item.content} href={item.href} />
                             );
@@ -90,12 +92,18 @@ function MyHeader() {
                             }}
                             onClick={() => handleOpenSideBar('wishlist')}
                         />
-                        <PiShoppingCartLight
-                            style={{
-                                fontSize: '25px'
-                            }}
-                            onClick={() => handleOpenSideBar('cart')}
-                        />
+                        <div className={boxCart}>
+                            <PiShoppingCartLight
+                                style={{
+                                    fontSize: '25px'
+                                }}
+                                onClick={() => handleOpenSideBar('cart')}
+                            />
+
+                            <div className={quantity}>
+                                {listProductCart.length}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
