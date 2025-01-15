@@ -15,7 +15,7 @@ function Login() {
     const [isRegister, setIsRegister] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const { toast } = useContext(ToastContext);
-    const { setIsOpen } = useContext(SideBarContext);
+    const { setIsOpen, handleGetListProductCart } = useContext(SideBarContext);
     const { setUserId } = useContext(StoreContext);
 
     const formik = useFormik({
@@ -35,7 +35,7 @@ function Login() {
                 'Passwords must match'
             )
         }),
-        onSubmit: async values => {
+        onSubmit: async (values) => {
             if (isLoading) return;
 
             const { email: username, password } = values;
@@ -44,14 +44,14 @@ function Login() {
 
             if (isRegister) {
                 await register({ username, password })
-                    .then(res => {
+                    .then((res) => {
                         toast.success(res.data.message);
 
                         setTimeout(() => {
                             setIsLoading(false);
                         }, 3000);
                     })
-                    .catch(err => {
+                    .catch((err) => {
                         toast.error(err.response.data.message);
                         setTimeout(() => {
                             setIsLoading(false);
@@ -62,7 +62,7 @@ function Login() {
             if (!isRegister) {
                 setIsLoading(true);
                 await signIn({ username, password })
-                    .then(res => {
+                    .then((res) => {
                         setTimeout(() => {
                             setIsLoading(false);
                         }, 3000);
@@ -71,11 +71,12 @@ function Login() {
                         Cookies.set('token', token);
                         Cookies.set('refreshToken', refreshToken);
                         Cookies.set('userId', id);
-                        toast.success('Sign in successfully!');
-                        window.location.reload();
+                        toast.success('Sign in successfully!');                        
                         setIsOpen(false);
+                        handleGetListProductCart(id, 'cart');
+                        window.location.reload();
                     })
-                    .catch(err => {
+                    .catch((err) => {
                         setTimeout(() => {
                             setIsLoading(false);
                         }, 3000);

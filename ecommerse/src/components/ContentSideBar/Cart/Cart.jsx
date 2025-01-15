@@ -5,10 +5,11 @@ import ItemProduct from '@components/ContentSideBar/components/ItemProduct/ItemP
 import Button from '@components/Button/Button';
 import { useContext } from 'react';
 import { SideBarContext } from '@contexts/SideBarProvider';
+import LoadingTextCommon from '@components/LoadingTextCommon/LoadingTextCommon';
 function Cart() {
-    const { container, boxBtn, total } = styles;
+    const { container, boxBtn, total, containerListProductCart } = styles;
 
-    const { listProductCart } = useContext(SideBarContext);
+    const { listProductCart, isLoading } = useContext(SideBarContext);
 
     return (
         <div className={container}>
@@ -24,18 +25,24 @@ function Cart() {
                     title={'CART'}
                 />
 
-                {listProductCart.map((item, index) => {
-                    return (
-                        <ItemProduct
-                            key={index}
-                            src={item.images[0]}
-                            nameProduct={item.name}
-                            priceProduct={item.price}
-                            sizeProduct={item.size}
-                            quantity={item.quantity}
-                        />
-                    );
-                })}
+                {isLoading ? (
+                    <LoadingTextCommon />
+                ) : (
+                    listProductCart.map((item, index) => {
+                        return (
+                            <ItemProduct
+                                key={index}
+                                src={item.images[0]}
+                                nameProduct={item.name}
+                                priceProduct={item.price}
+                                sizeProduct={item.size}
+                                quantity={item.quantity}
+                                productId={item.productId}
+                                userId={item.userId}
+                            />
+                        );
+                    })
+                )}
             </div>
             <div>
                 <div className={total}>
