@@ -16,7 +16,24 @@
         flex-direction: column;
     }
 
-    .containerListProductCart{
-
+    .boxEmpty{
+        text-align: center;
+        font-size: 14px;
+        color: variable.$four_color;
+        margin-top: 30px;
+        .boxBtnEmpty{
+            width: 162px;
+            margin: 20px auto;
+        }
     }
+
+    .containerListItem{
+        @include mixin.flex_box_custom(space-between, unset, 0px);
+        flex-grow: 1;
+        flex-direction: column;
+    }
+}
+
+.isEmpty{
+    justify-content: unset;
 }
