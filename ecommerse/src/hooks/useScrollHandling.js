@@ -23,7 +23,7 @@ const useScrollHandling = () => {
     useEffect(() => {
         window.addEventListener('scroll', scrollTracking);
 
-        return () => window.addEventListener('scroll', scrollTracking);
+        return () => window.removeEventListener('scroll', scrollTracking);
     }, []);
 
     return {

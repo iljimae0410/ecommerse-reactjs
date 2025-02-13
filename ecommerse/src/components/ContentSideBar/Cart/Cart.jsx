@@ -9,11 +9,20 @@ import LoadingTextCommon from '@components/LoadingTextCommon/LoadingTextCommon';
 import cls from 'classnames';
 import { useNavigate } from 'react-router-dom';
 function Cart() {
-    const { container, boxBtn, total, isEmpty, boxEmpty, boxBtnEmpty, containerListItem } = styles;
+    const {
+        container,
+        boxBtn,
+        total,
+        isEmpty,
+        boxEmpty,
+        boxBtnEmpty,
+        containerListItem
+    } = styles;
 
     const navigate = useNavigate();
 
-    const { listProductCart, isLoading, setIsOpen } = useContext(SideBarContext);
+    const { listProductCart, isLoading, setIsOpen } =
+        useContext(SideBarContext);
 
     const handleNavigateToShop = () => {
         navigate('/shop');
@@ -21,9 +30,13 @@ function Cart() {
     };
 
     const subTotal = listProductCart.reduce((acc, item) => {
-        return acc + item.total
+        return acc + item.total;
     }, 0);
-    
+
+    const handleNavigateToCart = () => {
+        navigate('/cart');
+        setIsOpen(false);
+    };
 
     return (
         <div
@@ -70,7 +83,10 @@ function Cart() {
                         </div>
 
                         <div className={boxBtn}>
-                            <Button content={'VIEW CART'} />
+                            <Button
+                                content={'VIEW CART'}
+                                onClick={handleNavigateToCart}
+                            />
                             <Button content={'CHECKOUT'} isPrimary={false} />
                         </div>
                     </div>

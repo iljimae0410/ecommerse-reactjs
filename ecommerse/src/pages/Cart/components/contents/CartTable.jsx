@@ -1,39 +1,10 @@
 import React, { useState } from 'react';
 import styles from '../../styles.module.scss'; // import file SCSS
 import SelectBox from '@pages/OurShop/components/SelectBox';
+import LoadingCart from '@pages/Cart/components/Loading';
 
-function CartTable() {
+const CartTable = ({ listProductCart, getData, isLoading, getDataDelete }) => {
     const { cartTable } = styles;
-    // Dữ liệu mẫu mô phỏng các sản phẩm trong giỏ hàng
-    const [cartItems, setCartItems] = useState([
-        {
-            id: 1,
-            name: '10K Yellow Gold',
-            price: 99.99,
-            sku: '12345',
-            quantity: 1,
-            size: 'M',
-            imageUrl: 'https://xstore.8theme.com/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/Image-1.1-min-285x340.jpg' // Chèn link ảnh minh hoạ
-        },
-        {
-            id: 2,
-            name: 'Amet faucibus nunc',
-            price: 1879.99,
-            sku: '87654',
-            quantity: 1,
-            size: 'M',
-            imageUrl: 'https://xstore.8theme.com/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/Image-7.1-min-285x340.jpg'
-        },
-        {
-            id: 3,
-            name: 'Consectetur nibh at',
-            price: 119.99,
-            sku: '12349',
-            quantity: 1,
-            size: 'L',
-            imageUrl: 'https://xstore.8theme.com/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/Image-2.1-min-285x340.jpg'
-        }
-    ]);
 
     // Hàm thay đổi số lượng
     const handleQuantityChange = (id, newQuantity) => {
@@ -55,11 +26,19 @@ function CartTable() {
         { label: '4', value: '4' },
         { label: '5', value: '5' },
         { label: '6', value: '6' },
-        { label: '7', value: '7' },
+        { label: '7', value: '7' }
     ];
 
-    const getValueSelect = (value, type) => {
-        console.log(value, type);
+    const getValueSelect = (userId, productId, quantity, size) => {
+        const data = {
+            userId,
+            productId,
+            quantity,
+            size,
+            isMultiple: true
+        };
+
+        getData(data);
     };
 
     return (
@@ -76,17 +55,28 @@ function CartTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {cartItems.map((item) => (
+                    {listProductCart.map((item) => (
                         <tr key={item.id}>
                             <td>
-                                <img src={item.imageUrl} alt={item.name} />
+                                <img src={item.images[0]} alt={item.name} />
                                 <div>
                                     <p>{item.name}</p>
                                     <p>Size: {item.size}</p>
                                 </div>
                             </td>
                             <td>
-                                <div onClick={() => handleDelete(item.id)}>
+                                <div
+                                    onClick={() =>
+                                        getDataDelete({
+                                            userId: item.userId,
+                                            productId: item.productId
+                                        })
+                                    }
+
+                                    style={{ 
+                                        cursor: 'pointer'
+                                     }}
+                                >
                                     &#128465;
                                 </div>
                             </td>
@@ -95,8 +85,16 @@ function CartTable() {
                             <td>
                                 <SelectBox
                                     options={showOption}
-                                    getValue={getValueSelect}
+                                    getValue={(e) =>
+                                        getValueSelect(
+                                            item.userId,
+                                            item.productId,
+                                            e,
+                                            item.size
+                                        )
+                                    }
                                     type='show'
+                                    defaultValue={item.quantity}
                                 />
                             </td>
                             <td>${calculateSubtotal(item)}</td>
@@ -104,8 +102,10 @@ function CartTable() {
                     ))}
                 </tbody>
             </table>
+
+            {isLoading && <LoadingCart />}
         </div>
     );
-}
+};
 
 export default CartTable;

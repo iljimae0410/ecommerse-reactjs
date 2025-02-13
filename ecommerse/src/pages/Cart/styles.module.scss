@@ -142,6 +142,7 @@
                                 border: 1px solid #ccc;
                                 border-radius: 1px;
                                 color: variable.$secondary_color;
+                                outline: none;
                             }
                         }
 
@@ -153,6 +154,8 @@
                 }
             }
         }
+
+        
     }
 
     .containerRight {
@@ -163,6 +166,8 @@
         padding: 25px;
         border: 2px solid #333;
         flex-grow: 1;
+
+        position: relative;
 
         .title {
             font-size: 14px;
@@ -189,7 +194,7 @@
             color: variable.$four_color;
         }
 
-        .space{
+        .space {
             height: 10px;
         }
     }
@@ -216,7 +221,7 @@
             }
         }
 
-        .boxImgMethods{
+        .boxImgMethods {
             @include mixin.flex_box_custom(center, center, 10px);
             .imgMethods {
                 border: 1px solid #e1e1e1;
@@ -226,10 +231,71 @@
         }
     }
 
-    .textSecure{
+    .textSecure {
         text-align: center;
         font-size: 14px;
         color: variable.$thr_color;
         margin-top: 10px;
     }
+
+    .boxFooter {
+        @include mixin.flex_box_custom(space-between, center, 0px);
+        margin-top: 15px;
+        .boxCoupon {
+            @include mixin.flex_box_custom(flex-start, center, 0px);
+            input {
+                padding: 8px 15px;
+                border: 1px solid #e1e1e1;
+                border-radius: 2px;
+                width: 300px;
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            button {
+                height: 36px;
+                border-radius: 0px;
+                padding: 0 10px;
+                font-size: 12px;
+                border: 1px solid #e1e1e1;
+                width: 36px;
+            }
+        }
+        .boxDelete {
+            button {
+                height: 36px;
+                font-size: 12px;
+                padding: 0 30px;
+            }
+        }
+    }
+}
+
+.boxEmptyCart {
+    @include mixin.flex_box_custom(center, center, 20px);
+    flex-direction: column;
+    width: 100%;
+    font-size: 14px;
+    color: variable.$thr_color;
+    .titleEmpty {
+        font-size: 24px;
+        color: variable.$primary_color;
+    }
+    .boxBtnEmpty {
+        button {
+            padding: 0 20px;
+            font-size: 12px;
+        }
+    }
+}
+
+.loadingCart {
+    @include mixin.flex_box_custom(center, center, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.5);
 }
