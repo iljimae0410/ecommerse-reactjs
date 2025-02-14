@@ -10,6 +10,7 @@ export const SidebarProvider = ({ children }) => {
     const [listProductCart, setListProductCart] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const userId = Cookies.get('userId');
+    const [detailProduct, setDetailProduct] = useState(null);
 
     const handleGetListProductCart = (userId, type) => {
         if (userId && type === 'cart') {
@@ -35,7 +36,9 @@ export const SidebarProvider = ({ children }) => {
         listProductCart,
         isLoading,
         setIsLoading,
-        userId
+        userId,
+        detailProduct,
+        setDetailProduct
     };
 
     useEffect(() => {

@@ -47,6 +47,7 @@
     .boxIcon {
         width: 40px;
         height: 40px;
+        cursor: pointer;
         @include mixin.flex_box_custom(center, center, 0px);
         img {
             width: 17px;
@@ -86,11 +87,11 @@
     }
 }
 
-.isActiveSize{
+.isActiveSize {
     border: 1px solid variable.$primary_color !important;
 }
 
-.btnClear{
+.btnClear {
     font-size: 12px;
     text-align: center;
     margin-top: 10px;
