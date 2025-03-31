@@ -12,6 +12,7 @@ import { HiOutlineShoppingBag } from 'react-icons/hi2';
 import { LiaEyeSolid } from 'react-icons/lia';
 import { TfiReload } from 'react-icons/tfi';
 import styles from './styles.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 function ProductItem({
     src,
@@ -31,6 +32,7 @@ function ProductItem({
         useContext(SideBarContext);
     const { toast } = useContext(ToastContext);
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
     const {
         boxImg,
@@ -105,6 +107,14 @@ function ProductItem({
         setDetailProduct(details);
     };
 
+    const handleNavigateToDetail = () => {
+        const path = `/product/${details._id}`;
+
+        console.log(path);
+
+        navigate(path);
+    };
+
     useEffect(() => {
         if (isHomepage) {
             setIsShowGrid(true);
@@ -119,9 +129,12 @@ function ProductItem({
                 className={cls(boxImg, {
                     [largeImg]: !isShowGrid
                 })}
+                style={{
+                    cursor: 'pointer'
+                }}
             >
-                <img src={src} alt='' />
-                <img src={prevSrc} alt='' className={showImgWhenHover} />
+                <img src={src} alt='' onClick={handleNavigateToDetail} />
+                <img src={prevSrc} alt='' className={showImgWhenHover} onClick={handleNavigateToDetail}/>
 
                 <div className={showFncWhenHover}>
                     <div className={boxIcon}>

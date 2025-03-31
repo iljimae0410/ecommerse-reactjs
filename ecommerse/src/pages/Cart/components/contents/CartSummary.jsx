@@ -4,6 +4,7 @@ import cls from 'classnames';
 import { useContext } from 'react';
 import { SideBarContext } from '@contexts/SideBarProvider';
 import LoadingCart from '@pages/Cart/components/Loading';
+import PaymentMethods from '@components/PaymentMethods/PaymentMethods';
 
 function CartSummary() {
     const {
@@ -60,26 +61,7 @@ function CartSummary() {
                 {isLoading && <LoadingCart />}
             </div>
 
-            <div className={containerMethods}>
-                <div className={titleMethods}>
-                    Guaranteed <span>safe</span> checkout
-                </div>
-
-                <div className={boxImgMethods}>
-                    {srcMethods.map((src, index) => {
-                        return (
-                            <img
-                                src={src}
-                                alt={src}
-                                className={imgMethods}
-                                key={index}
-                            />
-                        );
-                    })}
-                </div>
-            </div>
-
-            <div className={textSecure}>Your Payment is 100% Secure</div>
+            <PaymentMethods />
         </div>
     );
 }

@@ -16,5 +16,6 @@ export default defineConfig({
       '@apis': path.resolve(__dirname, 'src/apis'),
       '@pages': path.resolve(__dirname, 'src/pages')
     }
-  }
+  },
+  // base: '/ecommerse-reactjs'
 })
