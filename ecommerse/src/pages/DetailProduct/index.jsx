@@ -6,6 +6,8 @@ import { PiShoppingCartThin } from 'react-icons/pi';
 import { BsHeart } from 'react-icons/bs';
 import { TfiReload } from 'react-icons/tfi';
 import PaymentMethods from '@components/PaymentMethods/PaymentMethods';
+import AccordionMenu from '@components/AccordionMenu';
+import { useState } from 'react';
 
 function DetailProduct() {
     const {
@@ -28,14 +30,25 @@ function DetailProduct() {
         info
     } = styles;
 
-    const srcMethods = [
-        'https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/visa.jpeg',
-        'https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/master-card.jpeg',
-        'https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/paypal.jpeg',
-        'https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/american-express.jpeg',
-        'https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/maestro.jpeg',
-        'https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/bitcoin.jpeg'
+    const [menuSelected, setMenuSelected] = useState(1);
+
+    const dataAccordionMenu = [
+        {
+            id: 1,
+            titleMenu: 'ADDITIONAL INFORMATION',
+            contentJsx: <div>CONTENT ADDITIONAL</div>
+        },
+        {
+            id: 2,
+            titleMenu: 'REVIEW (0)',
+            contentJsx: <div>CONTENT REVIEW</div>
+        }
     ];
+
+    const handleSetMenuSelected = (id) => {
+        setMenuSelected(id);
+    };
+
     return (
         <div>
             <MyHeader />
@@ -132,10 +145,28 @@ function DetailProduct() {
                             </div>
 
                             <div className={info}>
-                                <div>Brand: <span>Brand 03</span></div>
-                                <div>SKU: <span>87654</span></div>
-                                <div>Category: <span>Kem</span></div>
+                                <div>
+                                    Brand: <span>Brand 03</span>
+                                </div>
+                                <div>
+                                    SKU: <span>87654</span>
+                                </div>
+                                <div>
+                                    Category: <span>Kem</span>
+                                </div>
                             </div>
+
+                            {dataAccordionMenu.map((item, index) => (
+                                <AccordionMenu
+                                    key={index}
+                                    titleMenu={item.titleMenu}
+                                    contentJsx={item.contentJsx}
+                                    onClick={() =>
+                                        handleSetMenuSelected(item.id)
+                                    }
+                                    isSelected={menuSelected === item.id}
+                                />
+                            ))}
                         </div>
                     </div>
                 </MainLayout>
